@@ -1,7 +1,6 @@
 package bean.Characters;
 
 import java.util.Objects;
-import java.util.Observable;
 
 /**
  * The type Human.

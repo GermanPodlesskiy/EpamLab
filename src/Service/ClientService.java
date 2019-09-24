@@ -6,13 +6,26 @@ import dao.DaoClient;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * The type Client service.
+ */
 public class ClientService implements Service<Client> {
     private DaoClient daoClient;
 
+    /**
+     * Gets dao client.
+     *
+     * @return the dao client
+     */
     public DaoClient getDaoClient() {
         return daoClient;
     }
 
+    /**
+     * Instantiates a new Client service.
+     *
+     * @param daoClient the dao client
+     */
     public ClientService(DaoClient daoClient) {
         this.daoClient = daoClient;
     }

@@ -16,18 +16,34 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * The type Client xml parser.
+ */
 public class ClientXmlParser implements XmlParser<Client> {
     private DocumentBuilder documentBuilder;
     private String path;
 
+    /**
+     * Gets path.
+     *
+     * @return the path
+     */
     public String getPath() {
         return path;
     }
 
+    /**
+     * Sets path.
+     *
+     * @param path the path
+     */
     public void setPath(String path) {
         this.path = path;
     }
 
+    /**
+     * Instantiates a new Client xml parser.
+     */
     public ClientXmlParser() {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
@@ -37,6 +53,11 @@ public class ClientXmlParser implements XmlParser<Client> {
         }
     }
 
+    /**
+     * Instantiates a new Client xml parser.
+     *
+     * @param path the path
+     */
     public ClientXmlParser(String path) {
         this();
         this.path = path;

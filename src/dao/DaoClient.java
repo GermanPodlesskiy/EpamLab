@@ -7,25 +7,51 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * The type Dao client.
+ */
 public class DaoClient implements Dao<Client> {
     private ClientXmlParser clientXmlParser;
     private ArrayList<Client> clients = new ArrayList<>();
 
+    /**
+     * Gets client xml parser.
+     *
+     * @return the client xml parser
+     */
     public ClientXmlParser getClientXmlParser() {
         return clientXmlParser;
     }
 
+    /**
+     * Sets client xml parser.
+     *
+     * @param clientXmlParser the client xml parser
+     */
     public void setClientXmlParser(ClientXmlParser clientXmlParser) {
         this.clientXmlParser = clientXmlParser;
     }
 
+    /**
+     * Gets clients.
+     *
+     * @return the clients
+     */
     public ArrayList<Client> getClients() {
         return clients;
     }
 
+    /**
+     * Instantiates a new Dao client.
+     */
     public DaoClient() {
     }
 
+    /**
+     * Instantiates a new Dao client.
+     *
+     * @param clientXmlParser the client xml parser
+     */
     public DaoClient(ClientXmlParser clientXmlParser) {
         this.clientXmlParser = clientXmlParser;
 

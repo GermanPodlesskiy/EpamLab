@@ -60,10 +60,20 @@ public class Client extends Human {
         this.chosenMenuItems = chosenMenuItems;
     }
 
+    /**
+     * Gets table.
+     *
+     * @return the table
+     */
     public Table getTable() {
         return table;
     }
 
+    /**
+     * Sets table.
+     *
+     * @param table the table
+     */
     public void setTable(Table table) {
         this.table = table;
     }
@@ -74,6 +84,11 @@ public class Client extends Human {
     public Client() {
     }
 
+    /**
+     * Instantiates a new Client.
+     *
+     * @param id the id
+     */
     public Client(int id) {
         this.id = id;
     }

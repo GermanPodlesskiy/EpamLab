@@ -5,6 +5,9 @@ import bean.Characters.Client;
 
 import java.util.Comparator;
 
+/**
+ * The type Client by last name comparer.
+ */
 public class ClientByLastNameComparer implements Comparator<Client>, Finder<Client> {
     @Override
     public boolean isFound(Client obj, Object value) {

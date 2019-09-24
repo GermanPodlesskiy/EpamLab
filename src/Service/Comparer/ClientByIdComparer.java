@@ -5,6 +5,9 @@ import bean.Characters.Client;
 
 import java.util.Comparator;
 
+/**
+ * The type Client by id comparer.
+ */
 public class ClientByIdComparer implements Comparator<Client>, Finder<Client> {
     @Override
     public boolean isFound(Client obj, Object value) {

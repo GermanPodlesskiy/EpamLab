@@ -18,6 +18,11 @@ public class Table {
         return isFree;
     }
 
+    /**
+     * Sets free.
+     *
+     * @param free the free
+     */
     public void setFree(boolean free) {
         isFree = free;
     }
