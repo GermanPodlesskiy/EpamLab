@@ -1,6 +1,6 @@
-package Service.Comparer;
+package service.Comparer;
 
-import Service.Finder;
+import service.Finder;
 import bean.Characters.Client;
 
 import java.util.Comparator;

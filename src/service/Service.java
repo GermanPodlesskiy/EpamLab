@@ -1,10 +1,10 @@
-package Service;
+package service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
- * The interface Service.
+ * The interface service.
  *
  * @param <T> the type parameter
  */

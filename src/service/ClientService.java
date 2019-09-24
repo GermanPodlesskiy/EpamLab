@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import bean.Characters.Client;
 import dao.DaoClient;
