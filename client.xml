@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<clients>
+    <client>
+        <id>1</id>
+        <first-name>German</first-name>
+        <last-name>Podlessky</last-name>
+        <money>1000</money>
+        <table>
+            <number>1</number>
+            <is-free>true</is-free>
+        </table>
+        <chosen-menu-items>
+            <menu-item>
+                <name>Soup</name>
+                <price>100</price>
+            </menu-item>
+            <menu-item>
+                <name>salad</name>
+                <price>70</price>
+            </menu-item>
+        </chosen-menu-items>
+    </client>
+
+    <client>
+        <id>2</id>
+        <first-name>Roma</first-name>
+        <last-name>Urchak</last-name>
+        <money>1100</money>
+        <table>
+            <number>2</number>
+            <is-free>true</is-free>
+        </table>
+        <chosen-menu-items>
+            <menu-item>
+                <name>Soup</name>
+                <price>100</price>
+            </menu-item>
+            <menu-item>
+                <name>salad</name>
+                <price>70</price>
+            </menu-item>
+        </chosen-menu-items>
+    </client>
+
+    <client>
+        <id>3</id>
+        <first-name>Sergey</first-name>
+        <last-name>Neygen</last-name>
+        <money>700</money>
+        <table>
+            <number>3</number>
+            <is-free>true</is-free>
+        </table>
+        <chosen-menu-items>
+            <menu-item>
+                <name>Soup</name>
+                <price>100</price>
+            </menu-item>
+            <menu-item>
+                <name>meat</name>
+                <price>300</price>
+            </menu-item>
+            <menu-item>
+                <name>salad</name>
+                <price>70</price>
+            </menu-item>
+        </chosen-menu-items>
+    </client>
+
+    <client>
+        <id>4</id>
+        <first-name>Gleb</first-name>
+        <last-name>Sevruk</last-name>
+        <money>800</money>
+    </client>
+</clients>

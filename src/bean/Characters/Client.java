@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Client extends Human {
     private int id;
     private int money;
-    private ArrayList<MenuItem> chosenMenuItems = new ArrayList<MenuItem>();
+    private ArrayList<MenuItem> chosenMenuItems = new ArrayList<>();
     private Table table;
 
     /**
@@ -60,10 +60,22 @@ public class Client extends Human {
         this.chosenMenuItems = chosenMenuItems;
     }
 
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
     /**
      * Instantiates a new Client.
      */
     public Client() {
+    }
+
+    public Client(int id) {
+        this.id = id;
     }
 
     /**

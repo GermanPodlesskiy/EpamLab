@@ -1,24 +1,25 @@
 package dao;
 
 import bean.Characters.Client;
+import parser.ClientXmlParser;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class DaoClient implements Dao<Client> {
-    private static DaoClient ourInstance = new DaoClient();
+    private static DaoClient instance = new DaoClient();
+    private ClientXmlParser clientXmlParser;
 
-    /**
-     * Gets instance.
-     *
-     * @return the instance
-     */
-    static DaoClient getInstance() {
-        return ourInstance;
+    public static DaoClient getInstance() {
+        return instance;
     }
 
-    private List<Client> clients = new ArrayList<>();
+    private ArrayList<Client> clients = new ArrayList<>();
+
+    public List<Client> getAllClients() {
+        return clients;
+    }
 
     private DaoClient() {
     }
@@ -30,6 +31,12 @@ public class DaoClient implements Dao<Client> {
 
         if (stream.count() != 0) {
             clients.forEach(x -> clients.remove(obj));
+
+            try {
+                clientXmlParser.setData(clients);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return;
         }
 
@@ -47,6 +54,12 @@ public class DaoClient implements Dao<Client> {
         }
 
         clients.add(obj);
+
+        try {
+            clientXmlParser.setData(clients);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -67,14 +80,11 @@ public class DaoClient implements Dao<Client> {
         }
 
         this.clients.addAll(items);
-    }
 
-    /**
-     * Gets client list.
-     *
-     * @return the client list
-     */
-    public List<Client> getClients() {
-        return clients;
+        try {
+            clientXmlParser.setData(this.clients);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
