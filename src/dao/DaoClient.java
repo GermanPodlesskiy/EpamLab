@@ -19,7 +19,7 @@ public class DaoClient implements Dao<Client> {
         this.clientXmlParser = clientXmlParser;
     }
 
-    public List<Client> getAllClients() {
+    public ArrayList<Client> getClients() {
         return clients;
     }
 
