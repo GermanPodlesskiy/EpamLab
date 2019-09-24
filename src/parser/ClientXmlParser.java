@@ -15,7 +15,6 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClientXmlParser implements XmlParser<Client> {
     private DocumentBuilder documentBuilder;
@@ -29,7 +28,7 @@ public class ClientXmlParser implements XmlParser<Client> {
         this.path = path;
     }
 
-    private ClientXmlParser() {
+    public ClientXmlParser() {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
         try {
@@ -38,8 +37,13 @@ public class ClientXmlParser implements XmlParser<Client> {
         }
     }
 
+    public ClientXmlParser(String path) {
+        this();
+        this.path = path;
+    }
+
     @Override
-    public List<Client> getData() throws Exception {
+    public ArrayList<Client> getData() throws Exception {
         File file = new File(path);
         ArrayList<Client> clients = new ArrayList<>();
 

@@ -8,20 +8,32 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class DaoClient implements Dao<Client> {
-    private static DaoClient instance = new DaoClient();
     private ClientXmlParser clientXmlParser;
+    private ArrayList<Client> clients = new ArrayList<>();
 
-    public static DaoClient getInstance() {
-        return instance;
+    public ClientXmlParser getClientXmlParser() {
+        return clientXmlParser;
     }
 
-    private ArrayList<Client> clients = new ArrayList<>();
+    public void setClientXmlParser(ClientXmlParser clientXmlParser) {
+        this.clientXmlParser = clientXmlParser;
+    }
 
     public List<Client> getAllClients() {
         return clients;
     }
 
-    private DaoClient() {
+    public DaoClient() {
+    }
+
+    public DaoClient(ClientXmlParser clientXmlParser) {
+        this.clientXmlParser = clientXmlParser;
+
+        try {
+            clients = clientXmlParser.getData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
