@@ -50,7 +50,7 @@ public class Administator extends Human {
             return false;
         }
 
-        Administator that = (Administator) obj;
+        var that = (Administator) obj;
         return id == that.id;
     }
 

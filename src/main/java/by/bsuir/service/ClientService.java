@@ -43,7 +43,7 @@ public class ClientService implements Service<Client> {
 
     @Override
     public void update(Client item) {
-        for (Client x : daoClient.getAll()) {
+        for (var x : daoClient.getAll()) {
             if (x.getId() == item.getId()) {
                 daoClient.delete(x);
                 daoClient.add(item);
@@ -65,7 +65,7 @@ public class ClientService implements Service<Client> {
             throw new ServiceException("Comparator is null.");
         }
 
-        List<Client> clients = daoClient.getAll();
+        var clients = daoClient.getAll();
         clients.sort(comparator);
     }
 

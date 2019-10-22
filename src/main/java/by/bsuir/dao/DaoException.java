@@ -16,7 +16,7 @@ public class DaoException extends RuntimeException {
      *
      * @param message the message
      */
-    DaoException(String message) {
+    public DaoException(String message) {
         super(message);
     }
 

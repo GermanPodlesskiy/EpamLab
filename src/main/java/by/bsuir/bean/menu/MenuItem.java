@@ -6,7 +6,7 @@ import java.util.Objects;
  * The type Menu item.
  */
 public class MenuItem {
-    private int price;
+    private double price;
     private String name;
 
     /**
@@ -14,7 +14,7 @@ public class MenuItem {
      *
      * @return the price
      */
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -71,7 +71,7 @@ public class MenuItem {
             return false;
         }
 
-        MenuItem menuItem = (MenuItem) obj;
+        var menuItem = (MenuItem) obj;
         return price == menuItem.price &&
                 Objects.equals(name, menuItem.name);
     }

@@ -5,7 +5,6 @@ import by.bsuir.parser.ClientXmlParser;
 import by.bsuir.parser.XmlParserException;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * The type Dao client.
@@ -46,7 +45,7 @@ public class DaoClient implements Dao<Client> {
             throw new DaoException(e.getMessage());
         }
 
-        Stream<Client> stream = clients.stream().filter(x -> x.equals(obj));
+        var stream = clients.stream().filter(x -> x.equals(obj));
 
         if (stream.count() != 0) {
             clients.remove(obj);
@@ -69,7 +68,7 @@ public class DaoClient implements Dao<Client> {
             throw new DaoException(IS_NULL);
         }
 
-        List<Client> clients = xmlParser.getData();
+        var clients = xmlParser.getData();
 
         if (clients.stream().anyMatch(x -> x.equals(obj))) {
             throw new DaoException(EXIST);
@@ -91,8 +90,8 @@ public class DaoClient implements Dao<Client> {
             throw new DaoException(IS_NULL);
         }
 
-        List<Client> clients = xmlParser.getData();
-        Stream<Client> stream = clients.stream();
+        var clients = xmlParser.getData();
+        var stream = clients.stream();
 
         if (items.stream().anyMatch(x -> stream.anyMatch(z -> z.equals(x)))) {
             throw new DaoException(EXIST);

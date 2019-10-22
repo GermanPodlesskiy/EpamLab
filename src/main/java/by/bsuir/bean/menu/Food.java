@@ -58,7 +58,7 @@ public class Food extends MenuItem {
             return false;
         }
 
-        Food food = (Food) obj;
+        var food = (Food) obj;
 
         return weight == food.weight;
     }

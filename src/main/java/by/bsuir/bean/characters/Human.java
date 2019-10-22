@@ -72,7 +72,7 @@ public class Human {
             return false;
         }
 
-        Human human = (Human) obj;
+        var human = (Human) obj;
 
         return Objects.equals(getFirstName(), human.getFirstName()) &&
                 Objects.equals(getLastName(), human.getLastName());
