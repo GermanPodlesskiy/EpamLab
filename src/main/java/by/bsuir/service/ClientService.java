@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
  */
 public class ClientService implements Service<Client> {
     private static final String NOT_FOUND = "Client not found.";
+
     private DaoClient daoClient;
 
     /**

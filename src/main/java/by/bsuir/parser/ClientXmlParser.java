@@ -9,9 +9,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -38,24 +41,25 @@ public class ClientXmlParser implements XmlParser<Client> {
     private static final String MENU_ITEM_PRICE = "price";
 
     private DocumentBuilder documentBuilder;
-    private String path;
+    private String sourceFilePath;
+    private String xsdFilePath;
 
     /**
-     * Gets path.
+     * Gets source file path.
      *
-     * @return the path
+     * @return the source file path
      */
-    public String getPath() {
-        return path;
+    public String getSourceFilePath() {
+        return sourceFilePath;
     }
 
     /**
-     * Sets path.
+     * Gets xsd file path.
      *
-     * @param path the path
+     * @return the xsd file path
      */
-    public void setPath(String path) {
-        this.path = path;
+    public String getXsdFilePath() {
+        return xsdFilePath;
     }
 
     /**
@@ -69,29 +73,39 @@ public class ClientXmlParser implements XmlParser<Client> {
         }
     }
 
+
     /**
      * Instantiates a new Client xml parser.
      *
-     * @param path the path
+     * @param sourceFilePath the source file path
+     * @param xsdFilePath    the xsd file path
      */
-    public ClientXmlParser(String path) {
+    public ClientXmlParser(String sourceFilePath, String xsdFilePath) {
         this();
-        this.path = path;
+        this.sourceFilePath = sourceFilePath;
+        this.xsdFilePath = xsdFilePath;
     }
 
     @Override
     public List<Client> getData() throws XmlParserException {
-        var file = new File(path);
-        if (!file.exists()) {
-            throw new XmlParserException(path + ": file not exists.");
+        var sourceFile = new File(sourceFilePath);
+        var xsdFile = new File(xsdFilePath);
+
+        if (!sourceFile.exists()) {
+            throw new XmlParserException(sourceFilePath + ": file not exists.");
         }
+
+        if (!xsdFile.exists()) {
+            throw new XmlParserException(sourceFilePath + ": file not exists.");
+        }
+
+        validateXMLByXSD(sourceFile, xsdFile);
 
         List<Client> clients = new ArrayList<>();
         Document document;
 
-
         try {
-            document = documentBuilder.parse(file);
+            document = documentBuilder.parse(sourceFile);
         } catch (SAXException | IOException e) {
             throw new XmlParserException(e.getMessage());
         }
@@ -126,7 +140,7 @@ public class ClientXmlParser implements XmlParser<Client> {
         output.setEncoding("UTF-8");
 
         try {
-            output.setByteStream(Files.newOutputStream(Paths.get(path)));
+            output.setByteStream(Files.newOutputStream(Paths.get(sourceFilePath)));
         } catch (IOException e) {
             throw new XmlParserException(e.getMessage());
         }
@@ -255,7 +269,7 @@ public class ClientXmlParser implements XmlParser<Client> {
         numberElement.appendChild(document.createTextNode(Integer.toString(table.getNumber())));
 
         var isFreeElement = document.createElement(TABLE_IS_FREE);
-        isFreeElement.appendChild(document.createTextNode(Boolean.toString(table.getIsFree())));
+        isFreeElement.appendChild(document.createTextNode(Boolean.toString(table.isFree())));
 
         tableElement.appendChild(numberElement);
         tableElement.appendChild(isFreeElement);
@@ -280,11 +294,22 @@ public class ClientXmlParser implements XmlParser<Client> {
         nameElement.appendChild(document.createTextNode(menuItem.getName()));
 
         var priceElement = document.createElement(MENU_ITEM_PRICE);
-        priceElement.appendChild(document.createTextNode(Integer.toString(menuItem.getPrice())));
+        priceElement.appendChild(document.createTextNode(Double.toString(menuItem.getPrice())));
 
         menuItemElement.appendChild(nameElement);
         menuItemElement.appendChild(priceElement);
 
         return menuItemElement;
+    }
+
+    private void validateXMLByXSD(File xml, File xsd) throws XmlParserException {
+        try {
+            SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
+                    .newSchema(xsd)
+                    .newValidator()
+                    .validate(new StreamSource(xml));
+        } catch (Exception e) {
+            throw new XmlParserException("Invalid xml format");
+        }
     }
 }

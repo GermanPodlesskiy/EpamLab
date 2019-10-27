@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * The interface service.
+ * The interface Service.
  *
  * @param <T> the type parameter
  */
