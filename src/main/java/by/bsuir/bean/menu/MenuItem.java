@@ -6,8 +6,18 @@ import java.util.Objects;
  * The type Menu item.
  */
 public class MenuItem {
+    private int menuItemId;
     private double price;
     private String name;
+
+    /**
+     * Gets menu item id.
+     *
+     * @return the menu item id
+     */
+    public int getMenuItemId() {
+        return menuItemId;
+    }
 
     /**
      * Gets price.
@@ -54,10 +64,22 @@ public class MenuItem {
     /**
      * Instantiates a new Menu item.
      *
+     * @param id the id
+     */
+    public MenuItem(int id) {
+        this.menuItemId = id;
+    }
+
+    /**
+     * Instantiates a new Menu item.
+     *
+     * @param id    the id
      * @param name  the name
      * @param price the price
      */
-    public MenuItem(String name, int price) {
+    public MenuItem(int id, String name, double price) {
+        this(id);
+
         this.name = name;
         this.price = price;
     }

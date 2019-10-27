@@ -6,6 +6,7 @@ import java.util.Objects;
  * The type Human.
  */
 public class Human {
+    private int humanId;
     private String firstName;
     private String lastName;
 
@@ -46,9 +47,27 @@ public class Human {
     }
 
     /**
+     * Gets human id.
+     *
+     * @return the human id
+     */
+    public int getHumanId() {
+        return humanId;
+    }
+
+    /**
      * Instantiates a new Human.
      */
     public Human() {
+    }
+
+    /**
+     * Instantiates a new Human.
+     *
+     * @param id the id
+     */
+    public Human(int id) {
+        this.humanId = id;
     }
 
     /**
@@ -58,6 +77,20 @@ public class Human {
      * @param lastName  the last name
      */
     public Human(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    /**
+     * Instantiates a new Human.
+     *
+     * @param id        the id
+     * @param firstName the first name
+     * @param lastName  the last name
+     */
+    public Human(int id, String firstName, String lastName) {
+        this(id);
+
         this.firstName = firstName;
         this.lastName = lastName;
     }

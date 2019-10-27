@@ -6,7 +6,17 @@ import java.util.Objects;
  * The type Food.
  */
 public class Food extends MenuItem {
+    private int id;
     private int weight;
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
 
     /**
      * Gets weight.
@@ -35,12 +45,25 @@ public class Food extends MenuItem {
     /**
      * Instantiates a new Food.
      *
-     * @param name   the name
-     * @param price  the price
-     * @param weight the weight
+     * @param id  the id
+     * @param id1 the id 1
      */
-    public Food(String name, int price, int weight) {
-        super(name, price);
+    public Food(int id, int id1) {
+        super(id);
+        this.id = id1;
+    }
+
+    /**
+     * Instantiates a new Food.
+     *
+     * @param id         the id
+     * @param menuItemId the menu item id
+     * @param name       the name
+     * @param price      the price
+     * @param weight     the weight
+     */
+    public Food(int id, int menuItemId, String name, double price, int weight) {
+        super(menuItemId,name, price);
         this.weight = weight;
     }
 

@@ -6,7 +6,6 @@ import java.util.Objects;
  * The type Administator.
  */
 public class Administator extends Human {
-
     private int id;
 
     /**
@@ -22,6 +21,18 @@ public class Administator extends Human {
      * Instantiates a new Administator.
      */
     public Administator() {
+    }
+
+    /**
+     * Instantiates a new Administator.
+     *
+     * @param id  the id
+     * @param id1 the id 1
+     */
+    public Administator(int id, int id1) {
+        super(id);
+
+        this.id = id1;
     }
 
     /**

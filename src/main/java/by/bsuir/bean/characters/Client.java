@@ -48,18 +48,18 @@ public class Client extends Human {
     }
 
     /**
-     * Gets chosen bean.menu items.
+     * Gets chosen menu items.
      *
-     * @return the chosen bean.menu items
+     * @return the chosen menu items
      */
     public List<MenuItem> getChosenMenuItems() {
         return chosenMenuItems;
     }
 
     /**
-     * Sets chosen bean.menu items.
+     * Sets chosen menu items.
      *
-     * @param chosenMenuItems the chosen bean.menu items
+     * @param chosenMenuItems the chosen menu items
      */
     public void setChosenMenuItems(List<MenuItem> chosenMenuItems) {
         this.chosenMenuItems = chosenMenuItems;
@@ -102,14 +102,16 @@ public class Client extends Human {
      * Instantiates a new Client.
      *
      * @param id        the id
+     * @param money     the money
+     * @param humanId   the human id
      * @param firstName the first name
      * @param lastName  the last name
-     * @param money     the money
      */
-    public Client(int id, String firstName, String lastName, double money) {
-        super(firstName, lastName);
+    public Client(int id, double money, int humanId, String firstName, String lastName) {
+        super(humanId, firstName, lastName);
+
         this.id = id;
-        this.money = money;
+        setMoney(money);
     }
 
     @Override

@@ -6,7 +6,17 @@ import java.util.Objects;
  * The type Drink.
  */
 public class Drink extends MenuItem {
+    private int id;
     private int capacity;
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
 
     /**
      * Gets capacity.
@@ -38,12 +48,26 @@ public class Drink extends MenuItem {
     /**
      * Instantiates a new Drink.
      *
-     * @param name     the name
-     * @param price    the price
-     * @param capacity the capacity
+     * @param id  the id
+     * @param id1 the id 1
      */
-    public Drink(String name, int price, int capacity) {
-        super(name, price);
+    public Drink(int id, int id1) {
+        super(id);
+
+        this.id = id1;
+    }
+
+    /**
+     * Instantiates a new Drink.
+     *
+     * @param id         the id
+     * @param menuItemId the menu item id
+     * @param name       the name
+     * @param price      the price
+     * @param capacity   the capacity
+     */
+    public Drink(int id, int menuItemId, String name, int price, int capacity) {
+        super(menuItemId, name, price);
         this.capacity = capacity;
     }
 

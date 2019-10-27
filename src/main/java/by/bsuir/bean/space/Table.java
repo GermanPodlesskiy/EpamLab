@@ -6,15 +6,25 @@ import java.util.Objects;
  * The type Table.
  */
 public class Table {
+    private int id;
     private boolean isFree;
     private int number;
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
 
     /**
      * Is free boolean.
      *
      * @return the boolean
      */
-    public boolean getIsFree() {
+    public boolean isFree() {
         return isFree;
     }
 
@@ -54,10 +64,22 @@ public class Table {
     /**
      * Instantiates a new Table.
      *
+     * @param id the id
+     */
+    public Table(int id){
+        this.id = id;
+    }
+
+    /**
+     * Instantiates a new Table.
+     *
+     * @param id     the id
      * @param isFree the is free
      * @param number the number
      */
-    public Table(boolean isFree, int number) {
+    public Table(int id, boolean isFree, int number) {
+        this(id);
+
         this.isFree = isFree;
         this.number = number;
     }
