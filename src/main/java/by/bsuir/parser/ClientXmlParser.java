@@ -1,7 +1,6 @@
 package by.bsuir.parser;
 
 import by.bsuir.bean.characters.Client;
-import by.bsuir.bean.menu.MenuItem;
 import by.bsuir.bean.space.Table;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -35,10 +34,6 @@ public class ClientXmlParser implements XmlParser<Client> {
     private static final String TABLE = "table";
     private static final String TABLE_NUMBER = "number";
     private static final String TABLE_IS_FREE = "is-free";
-    private static final String CHOSEN_MENU_ITEMS = "chosen-menu-items";
-    private static final String MENU_ITEM = "menu-item";
-    private static final String MENU_ITEM_NAME = "name";
-    private static final String MENU_ITEM_PRICE = "price";
 
     private DocumentBuilder documentBuilder;
     private String sourceFilePath;
@@ -171,11 +166,6 @@ public class ClientXmlParser implements XmlParser<Client> {
             client.setTable(getTableElement(tableElement));
         }
 
-        var chosenMenuItemsElement = (Element) element.getElementsByTagName(CHOSEN_MENU_ITEMS).item(0);
-        if (chosenMenuItemsElement != null) {
-            client.setChosenMenuItems(getMenuItems(chosenMenuItemsElement));
-        }
-
         return client;
     }
 
@@ -186,7 +176,7 @@ public class ClientXmlParser implements XmlParser<Client> {
     }
 
     private Table getTableElement(Element element) {
-        var table = new Table();
+        var table = new Table(Integer.parseInt(getElementTextContent(element, ID)));
 
         try {
             table.setFree(Boolean.parseBoolean(getElementTextContent(element, TABLE_IS_FREE)));
@@ -201,33 +191,6 @@ public class ClientXmlParser implements XmlParser<Client> {
         }
 
         return table;
-    }
-
-    private List<MenuItem> getMenuItems(Element element) {
-        var nodeMenuItems = element.getElementsByTagName(MENU_ITEM);
-        List<MenuItem> menuItems = new ArrayList<>();
-
-        for (var i = 0; i < nodeMenuItems.getLength(); i++) {
-            if (nodeMenuItems.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                menuItems.add(getMenuItem((Element) nodeMenuItems.item(i)));
-            }
-        }
-
-        return menuItems;
-    }
-
-    private MenuItem getMenuItem(Element element) {
-        var menuItem = new MenuItem();
-
-        menuItem.setName(getElementTextContent(element, MENU_ITEM_NAME));
-
-        try {
-            menuItem.setPrice(Integer.parseInt(getElementTextContent(element, MENU_ITEM_PRICE)));
-        } catch (NumberFormatException ex) {
-            throw new NumberFormatException("'" + MENU_ITEM_PRICE + "'" + "incorrect");
-        }
-
-        return menuItem;
     }
 
     private Element getClientElement(Document document, Client client) {
@@ -255,10 +218,6 @@ public class ClientXmlParser implements XmlParser<Client> {
             clientElement.appendChild(getTableElement(document, client.getTable()));
         }
 
-        if (client.getChosenMenuItems() != null || !client.getChosenMenuItems().isEmpty()) {
-            clientElement.appendChild(getChosenMenuItemsElement(document, client.getChosenMenuItems()));
-        }
-
         return clientElement;
     }
 
@@ -275,31 +234,6 @@ public class ClientXmlParser implements XmlParser<Client> {
         tableElement.appendChild(isFreeElement);
 
         return tableElement;
-    }
-
-    private Element getChosenMenuItemsElement(Document document, List<MenuItem> menuItems) {
-        var menuItemsElement = document.createElement(CHOSEN_MENU_ITEMS);
-
-        for (MenuItem menuItem : menuItems) {
-            menuItemsElement.appendChild(getMenuItemElement(document, menuItem));
-        }
-
-        return menuItemsElement;
-    }
-
-    private Element getMenuItemElement(Document document, MenuItem menuItem) {
-        var menuItemElement = document.createElement(MENU_ITEM);
-
-        var nameElement = document.createElement(MENU_ITEM_NAME);
-        nameElement.appendChild(document.createTextNode(menuItem.getName()));
-
-        var priceElement = document.createElement(MENU_ITEM_PRICE);
-        priceElement.appendChild(document.createTextNode(Double.toString(menuItem.getPrice())));
-
-        menuItemElement.appendChild(nameElement);
-        menuItemElement.appendChild(priceElement);
-
-        return menuItemElement;
     }
 
     private void validateXMLByXSD(File xml, File xsd) throws XmlParserException {

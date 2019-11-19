@@ -7,26 +7,16 @@
         <last-name>LastName1</last-name>
         <money>1000</money>
         <table>
+            <id>1</id>
             <number>1</number>
             <is-free>true</is-free>
         </table>
-        <chosen-menu-items>
-            <menu-item>
-                <name>Soup</name>
-                <price>100</price>
-            </menu-item>
-            <menu-item>
-                <name>salad</name>
-                <price>70</price>
-            </menu-item>
-        </chosen-menu-items>
     </client>
     <client>
         <id>4</id>
         <first-name>FirstName4</first-name>
         <last-name>LastName4</last-name>
         <money>800</money>
-        <chosen-menu-items/>
     </client>
     <client>
         <id>3</id>
@@ -34,23 +24,10 @@
         <last-name>LastName3</last-name>
         <money>700</money>
         <table>
+            <id>3</id>
             <number>3</number>
             <is-free>true</is-free>
         </table>
-        <chosen-menu-items>
-            <menu-item>
-                <name>Soup</name>
-                <price>100</price>
-            </menu-item>
-            <menu-item>
-                <name>meat</name>
-                <price>300</price>
-            </menu-item>
-            <menu-item>
-                <name>salad</name>
-                <price>70</price>
-            </menu-item>
-        </chosen-menu-items>
     </client>
     <client>
         <id>2</id>
@@ -58,25 +35,15 @@
         <last-name>LastName2</last-name>
         <money>1100</money>
         <table>
+            <id>2</id>
             <number>2</number>
             <is-free>true</is-free>
         </table>
-        <chosen-menu-items>
-            <menu-item>
-                <name>Soup</name>
-                <price>100</price>
-            </menu-item>
-            <menu-item>
-                <name>salad</name>
-                <price>70</price>
-            </menu-item>
-        </chosen-menu-items>
     </client>
     <client>
         <id>5</id>
         <first-name>FirstName5</first-name>
         <last-name>LastName5</last-name>
         <money>100</money>
-        <chosen-menu-items/>
     </client>
 </clients>

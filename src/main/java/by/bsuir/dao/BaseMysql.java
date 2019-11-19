@@ -10,6 +10,10 @@ import java.util.List;
  */
 public abstract class BaseMysql<T> implements AutoCloseable {
     private Connection connection;
+    /**
+     * The Statement.
+     */
+    protected Statement statement;
 
     /**
      * Instantiates a new Base mysql.
@@ -34,6 +38,11 @@ public abstract class BaseMysql<T> implements AutoCloseable {
      */
     public void setConnection(Connection connection) {
         this.connection = connection;
+        try {
+            this.statement = connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -43,7 +52,7 @@ public abstract class BaseMysql<T> implements AutoCloseable {
      * @return the t
      * @throws SQLException the sql exception
      */
-    abstract T fillFieldsObject(ResultSet resultSet) throws SQLException;
+    protected abstract T fillFieldsObject(ResultSet resultSet) throws SQLException;
 
     /**
      * Sets field statement.
@@ -52,7 +61,7 @@ public abstract class BaseMysql<T> implements AutoCloseable {
      * @param entity    the entity
      * @throws SQLException the sql exception
      */
-    abstract void setFieldStatement(PreparedStatement statement, T entity) throws SQLException;
+    protected abstract void setFieldStatement(PreparedStatement statement, T entity) throws SQLException;
 
     /**
      * Fill list list.
@@ -61,7 +70,7 @@ public abstract class BaseMysql<T> implements AutoCloseable {
      * @return the list
      * @throws SQLException the sql exception
      */
-    abstract List<T> fillList(ResultSet resultSet) throws SQLException;
+    protected abstract List<T> fillList(ResultSet resultSet) throws SQLException;
 
     /**
      * Initialize entity t.
@@ -70,7 +79,7 @@ public abstract class BaseMysql<T> implements AutoCloseable {
      * @return the t
      * @throws SQLException the sql exception
      */
-    abstract T initializeEntity(ResultSet resultSet) throws SQLException;
+    protected abstract T initializeEntity(ResultSet resultSet) throws SQLException;
 
     /**
      * Default create int.
@@ -80,7 +89,7 @@ public abstract class BaseMysql<T> implements AutoCloseable {
      * @return the int
      * @throws DaoException the dao exception
      */
-    int defaultCreate(String sql, T entity) throws DaoException {
+    public int defaultCreate(String sql, T entity) throws DaoException {
         PreparedStatement statement = null;
 
         try {
@@ -106,7 +115,7 @@ public abstract class BaseMysql<T> implements AutoCloseable {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<T> defaultRead(String sql) throws DaoException {
+    public List<T> defaultRead(String sql) throws DaoException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
@@ -135,7 +144,7 @@ public abstract class BaseMysql<T> implements AutoCloseable {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<T> readByString(String sql, String field) throws DaoException {
+    public List<T> readByString(String sql, String field) throws DaoException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
@@ -166,7 +175,7 @@ public abstract class BaseMysql<T> implements AutoCloseable {
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<T> readByInt(Connection connection, String sql, int[] value) throws DaoException {
+    public List<T> readByInt(Connection connection, String sql, int[] value) throws DaoException {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 

@@ -4,19 +4,9 @@
     <xs:element name="clients" type="clientsType"/>
     <xs:complexType name="tableType">
         <xs:sequence>
+            <xs:element type="xs:integer" name="id"/>
             <xs:element type="xs:integer" name="number"/>
             <xs:element type="xs:boolean" name="is-free"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="menu-itemType">
-        <xs:sequence>
-            <xs:element type="xs:string" name="name"/>
-            <xs:element type="xs:double" name="price"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="chosen-menu-itemsType" mixed="true">
-        <xs:sequence>
-            <xs:element type="menu-itemType" name="menu-item" maxOccurs="unbounded" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="clientType">
@@ -26,7 +16,6 @@
             <xs:element type="xs:string" name="last-name"/>
             <xs:element type="xs:double" name="money"/>
             <xs:element type="tableType" name="table" minOccurs="0"/>
-            <xs:element type="chosen-menu-itemsType" name="chosen-menu-items"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="clientsType">

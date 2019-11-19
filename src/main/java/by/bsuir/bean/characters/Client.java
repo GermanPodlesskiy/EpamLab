@@ -1,10 +1,7 @@
 package by.bsuir.bean.characters;
 
-import by.bsuir.bean.menu.MenuItem;
 import by.bsuir.bean.space.Table;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,7 +10,6 @@ import java.util.Objects;
 public class Client extends Human {
     private int id;
     private double money;
-    private List<MenuItem> chosenMenuItems = new ArrayList<>();
     private Table table;
 
     /**
@@ -48,24 +44,6 @@ public class Client extends Human {
     }
 
     /**
-     * Gets chosen menu items.
-     *
-     * @return the chosen menu items
-     */
-    public List<MenuItem> getChosenMenuItems() {
-        return chosenMenuItems;
-    }
-
-    /**
-     * Sets chosen menu items.
-     *
-     * @param chosenMenuItems the chosen menu items
-     */
-    public void setChosenMenuItems(List<MenuItem> chosenMenuItems) {
-        this.chosenMenuItems = chosenMenuItems;
-    }
-
-    /**
      * Gets table.
      *
      * @return the table
@@ -85,8 +63,13 @@ public class Client extends Human {
 
     /**
      * Instantiates a new Client.
+     *
+     * @param anInt           the an int
+     * @param aDouble         the a double
+     * @param string          the string
+     * @param resultSetString the result set string
      */
-    public Client() {
+    public Client(int anInt, double aDouble, String string, String resultSetString) {
     }
 
     /**
@@ -131,12 +114,11 @@ public class Client extends Human {
         Client client = (Client) obj;
         return id == client.id &&
                 money == client.money &&
-                Objects.equals(chosenMenuItems, client.chosenMenuItems) &&
                 Objects.equals(table, client.table);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, money, chosenMenuItems, table);
+        return Objects.hash(super.hashCode(), id, money, table);
     }
 }
